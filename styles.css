@@ -1,0 +1,129 @@
+:root {
+  --background-color: white;
+  --header-background: #f7f7f7;
+  --text-color: black;
+  --link-color: #8ab4f8;
+  --font-main: 'Roboto', Arial, sans-serif;
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+  body {
+    --background-color: #121212;
+    --header-background: #1e1e1e;;
+    --text-color: white;
+  }
+}
+*/
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  font-size: 1rem;
+}
+
+body header {
+  display: flex;
+  font-family: 'Roboto';
+  justify-content: center;
+  gap: 5vw;
+  background-color: var(--header-background);
+}
+
+h1 {
+  font-size: 4rem;
+  margin-bottom: 0;
+}
+
+#header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#header-info p {
+  margin-top: 0;
+}
+
+#profile-pic{
+  width: 12%;
+  border-radius: 50%;
+  margin-top:1rem;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+#links{
+  display: flex;
+  gap:1.5rem;
+  margin-top: 1rem;
+}
+#links img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+#emailMe img {
+  width: 3rem;
+  height: 3rem;
+}
+nav a:hover {
+  transform: scale(1.25);
+}
+
+/* Main Styles */
+main {
+  display:flex;
+  justify-content: flex-start;
+  gap: 3rem;
+}
+
+#experience{
+  width: 50vw;
+}
+
+#ucr-logo {
+  border-radius: 50%;
+  width: 20%;
+  height: 20%;
+}
+
+.experience-item{
+  display: flex;
+  gap: 4rem;
+}
+
+
+#projects{
+  width: 50vw;
+}
+
+p {
+  line-height: 1.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h4 {
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#location {
+  margin-bottom: 1.5rem;
+}
+
+/* Link Styles */
+a {
+  color: var(--link-color);
+}
+
+
