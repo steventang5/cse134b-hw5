@@ -4,7 +4,7 @@ This is my portfolio site built with vanilla HTML, CSS, and JavaScript. The site
 
 ## Live Site
 
-[Visit the Live Site](https://your-netlify-url)
+[Visit the Live Site](https://steventang-hw5.netlify.app/)
 
 
 ## Changes & Enhancements
