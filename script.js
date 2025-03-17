@@ -3,7 +3,10 @@ class ProjectCard extends HTMLElement {
         super();
 
         this.attachShadow({ mode: "open" });
-        
+    }
+
+    connectedCallback() {
+                
         
         this.card = document.createElement("div");
         this.card.classList.add("card");
@@ -48,13 +51,11 @@ class ProjectCard extends HTMLElement {
             .info {
                 display: flex;
                 flex-direction:column;
-                align-items:flex-start;
             }
             .info p {
                 margin-top: 0;
             }
             img {  
-                display:block;
                 width: 14rem;
                 height: 14rem;
                 border-radius: 50%;
@@ -67,9 +68,7 @@ class ProjectCard extends HTMLElement {
             }
         `;
         this.shadowRoot.append(style, this.card);
-    }
 
-    connectedCallback() {
         const allCards = document.querySelectorAll("project-card");
         const index = Array.from(allCards).indexOf(this);
 
@@ -85,3 +84,63 @@ class ProjectCard extends HTMLElement {
     }
 }
 customElements.define("project-card", ProjectCard);
+
+// Sample project data
+const sampleProjects = [
+    {
+        title: "Document Data Store",
+        image: "icons/citrusdb.png",
+        alt: "Document Data Store",
+        description: "A scalable system using C++, JavaScript, React, and CrowCpp to efficiently store, retrieve, and manage structured documents. This project enabled high-speed operations tailored for JSON structures, incorporated advanced indexing for fast search and access, and featured an intuitive frontend interface for seamless online interaction with the stored documents.",
+        link: "https://github.com/CS180-spring/cs180-21-citrusdb-team"
+    },
+    {
+        title: "Text Bot Backend",
+        image: "icons/discord.svg",
+        alt: "Text Bot Backend",
+        description: "Developed an advanced text bot for Discord using JavaScript, Node.js, and MongoDB, which delivers real-time stock charts, in-game statistics from titles like Overwatch, and robust text moderation. The bot features a scalable backend that employs asynchronous programming and comprehensive exception handling to ensure high reliability and responsiveness. Detailed usage history is maintained in MongoDB to facilitate ongoing performance optimization and future enhancements, while seamless integration with external APIs ensures users receive timely and accurate data.",
+        link: "https://github.com/CS180-spring/cs180-21-citrusdb-team"
+    }
+];
+
+// Store sample data in localStorage 
+localStorage.setItem("projects", JSON.stringify(sampleProjects));
+
+// Function to load projects from local or remote
+function loadProjects(src) {
+    let projects = [];
+
+    if (src === "local") {
+        projects = JSON.parse(localStorage.getItem("projects"));
+        console.log("Local data:", projects);
+        displayProjects(projects);
+    } else if (src === "remote") {
+        fetch("https://api.jsonbin.io/v3/b/67d79e7e8561e97a50ed7070")
+            .then(response => response.json())
+            .then(data => {
+                console.log("Remote data:", data);
+                projects = data.record;
+                displayProjects(projects);
+            })
+            .catch(error => console.error("Error fetching remote data:", error));
+    }
+}
+
+// Function to display the project cards on the page
+function displayProjects(projects) {
+    const cardsContainer = document.getElementById("cards");
+    
+    cardsContainer.innerHTML = "";
+
+    projects.forEach(proj => {
+        const card = document.createElement("project-card");
+        card.setAttribute("title", proj.title);
+        card.setAttribute("image", proj.image);
+        card.setAttribute("alt", proj.alt);
+        card.setAttribute("description", proj.description);
+        card.setAttribute("link", proj.link);
+        cardsContainer.appendChild(card);
+    });
+}
+
+

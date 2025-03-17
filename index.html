@@ -47,7 +47,7 @@
                     </section>
                 </article>
             </section>
-
+            
             <section id="projects">
                 <h2>Projects</h2>
                 <noscript>
@@ -62,7 +62,13 @@
                         <p>A text bot using JavaScript, Node.js, and MongoDB for a messaging service (Discord). I implemented features such as viewing stock charts, text moderation, and retrieving in-game statistics from games like Overwatch, while also constructing a robust backend that handles exceptions and stores usage history. </p>
                     </article>
                 </noscript>
-                
+
+                <div id="buttons">
+                    <button onclick="loadProjects('local')">Load Local</button>
+                    <button onclick="loadProjects('remote')">Load Remote</button>
+                </div>
+                <div id="cards"></div>
+                <!-- 
                 <project-card 
                 title="Document Data Store" 
                 image="icons/citrusdb.png" 
@@ -77,6 +83,7 @@
                 alt = "Discord Logo" 
                 description = "Developed an advanced text bot for Discord using JavaScript, Node.js, and MongoDB, which delivers real-time stock charts, in-game statistics from titles like Overwatch, and robust text moderation. The bot features a scalable backend that employs asynchronous programming and comprehensive exception handling to ensure high reliability and responsiveness. Detailed usage history is maintained in MongoDB to facilitate ongoing performance optimization and future enhancements, while seamless integration with external APIs ensures users receive timely and accurate data.">
                 </project-card> 
+                -->
             </section>
 
         </main>
