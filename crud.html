@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src ="script.js"></script>
+    <title>CRUD Operations</title>
+  </head>
+  <body>
+    <header>
+      <h1>CRUD EC</h1>
+    </header>
+    
+    <main>
+      <section id="crud-form">
+        <h2>Manage Projects</h2>
+        <form id="projectForm">
+          <label>
+            Title:
+            <input type="text" id="title" required />
+          </label>
+          <br />
+          <label>
+            Image Path:
+            <input type="text" id="image" />
+          </label>
+          <br />
+          <label>
+            Alt Text:
+            <input type="text" id="alt" />
+          </label>
+          <br />
+          <label>
+            Description:
+            <textarea id="description"></textarea>
+          </label>
+          <br />
+          <label>
+            Link:
+            <input type="text" id="link" />
+          </label>
+          <br />
+          <button type="button" id="createBtn">Create</button>
+          <button type="button" id="updateBtn">Update</button>
+          <button type="button" id="deleteBtn">Delete</button>
+          <button type="button" id="readBtn">Read Projects</button>
+        </form>
+      </section>
+
+      <section id="projectList">
+        <h2>Project List</h2>
+        <div id="projectsDisplay"></div>
+      </section>
+    </main>
+  </body>
+</html>

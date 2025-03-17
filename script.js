@@ -143,4 +143,92 @@ function displayProjects(projects) {
     });
 }
 
+//CRUD EC
+function getProject() {
+    const projects = localStorage.getItem("projects");
+    return projects ? JSON.parse(projects) : [];
+}
+
+function saveProject(projects) {
+localStorage.setItem("projects", JSON.stringify(projects));
+}
+
+function displayProjects() {
+    const projectsDisplay = document.getElementById("projectsDisplay");
+    const projects = getProject();
+    projectsDisplay.innerHTML = "";
+    if (projects.length === 0) {
+      projectsDisplay.innerHTML = "<p>No projects found.</p>";
+    } else {
+      projects.forEach((proj, index) => {
+        const projectDiv = document.createElement("div");
+        projectDiv.innerHTML = `
+          <strong>Title:${proj.title}</strong>
+          <p>Description:${proj.description}</p>
+          <p>Image path:${proj.image}</p>
+          <p>Link:<a href="${proj.link}" target="_blank">${proj.link}</a></p>
+        `;
+        projectsDisplay.appendChild(projectDiv);
+      });
+    }
+}
+
+document.getElementById("createBtn").addEventListener("click", function() {
+    const title = document.getElementById("title").value;
+    const image = document.getElementById("image").value;
+    const alt = document.getElementById("alt").value;
+    const description = document.getElementById("description").value;
+    const link = document.getElementById("link").value;
+
+    if (!title) {
+      alert("Title is required.");
+      return;
+    }
+
+    let projects = getProject();
+
+    projects.push({ title, image, alt, description, link });
+    saveProject(projects);
+    alert("Project created successfully!");
+    displayProjects();
+});
+
+document.getElementById("readBtn").addEventListener("click", function() {
+    displayProjects();
+});
+
+document.getElementById("updateBtn").addEventListener("click", function() {
+    const title = document.getElementById("title").value;
+    const image = document.getElementById("image").value;
+    const alt = document.getElementById("alt").value;
+    const description = document.getElementById("description").value;
+    const link = document.getElementById("link").value;
+
+    let projects = getProject();
+    const index = projects.findIndex(proj => proj.title === title);
+    if (index == -1) {
+      alert("Project not found. You can create it first.");
+      return;
+    }
+    projects[index] = { title, image, alt, description, link };
+    saveProject(projects);
+    alert("Project updated successfully!");
+    displayProjects();
+});
+
+document.getElementById("deleteBtn").addEventListener("click", function() {
+    const title = document.getElementById("title").value;
+    let projects = getProject();
+    const newProjects = projects.filter(proj => proj.title !== title);
+    if (projects.length === newProjects.length) {
+      alert("Project not found.");
+      return;
+    }
+    saveProject(newProjects);
+    alert("Project deleted successfully!");
+    displayProjects();
+});
+
+window.addEventListener("DOMContentLoaded", displayProjects);
+
 
